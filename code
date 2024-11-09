@@ -1,0 +1,44 @@
+// This sketch will flash both LEDs in Morse code for "SOS" indefinitely.
+
+#define LED_PIN_TX 17  // TX LED pin on the Pro Micro
+#define LED_PIN_RX 30  // RX LED pin on the Pro Micro
+
+void dot() {
+  digitalWrite(LED_PIN_TX, HIGH);
+  digitalWrite(LED_PIN_RX, HIGH);
+  delay(200);
+  digitalWrite(LED_PIN_TX, LOW);
+  digitalWrite(LED_PIN_RX, LOW);
+  delay(200);
+}
+
+void dash() {
+  digitalWrite(LED_PIN_TX, HIGH);
+  digitalWrite(LED_PIN_RX, HIGH);
+  delay(600);
+  digitalWrite(LED_PIN_TX, LOW);
+  digitalWrite(LED_PIN_RX, LOW);
+  delay(200);
+}
+
+void sos() {
+  for (int i = 0; i < 3; i++) {
+    dot();
+  }
+  for (int i = 0; i < 3; i++) {
+    dash();
+  }
+  for (int i = 0; i < 3; i++) {
+    dot();
+  }
+}
+
+void setup() {
+  pinMode(LED_PIN_TX, OUTPUT);
+  pinMode(LED_PIN_RX, OUTPUT);
+}
+
+void loop() {
+  sos();
+  delay(1000);
+}
